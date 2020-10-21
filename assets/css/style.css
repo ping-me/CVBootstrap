@@ -1,0 +1,90 @@
+.parallax-container {
+    perspective: 1px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-image: url("../img/circuitry-25opacity.png");
+    background-position-y: 200px;
+}
+.parallax-bg {
+    position: absolute;
+    overflow: hidden;
+    content: " ";
+    top: 0px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 200px;
+    transform: translateZ(-1px) translateY(-200px) scale(2);
+}
+#banner-video-wrapper {
+    z-index: -1;
+    width: 100%;
+    top: 0px;
+    right: 0px;
+}
+#banner-video {
+    width: 100%;
+    top: 0;
+    right: 0px;
+    opacity: 100%;
+    mask-image: linear-gradient(150deg, #ffffffff, #ffffffee, #ffffff00);
+}
+.banner-title {
+    height: 150px;
+    padding-top: 70px;
+    padding-bottom: 150px;
+    padding-left: 50px;
+}
+.menu_anchors {
+    visibility: hidden;
+    position: relative;
+    top: -200px;
+}
+.picture {
+    order: 1;
+    width: 20px;
+    filter: drop-shadow(2px 2px 2px #000000);
+    transition: transform 500ms ease-in-out;
+}
+.picture:hover {
+    filter: drop-shadow(2px 2px 3px #000000);
+    transform: rotate3D(1, 1, 1, 360deg) scale(1.25);
+}
+.logo {
+    width: 20px;
+    margin-right: 10px;
+}
+.skill_dot_on, .skill_dot_off {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+    transition: transform 200ms ease-out;
+}
+.skill_dot_on:hover, .skill_dot_off:hover {
+    transform: scale(1.3);
+}
+.skill_dot_on {
+    background-color: var(--blue);
+}
+.skill_dot_off {
+    background-color: var(--gray);
+}
+@media (min-width: 768px) {
+    .parallax-bg {
+        top: -50px;
+        height: 300px;
+    }
+    .menu_anchors {
+        top: -40px;
+    }
+    .banner-title {
+        height: 300px;
+        padding-top: 50px;
+    }
+    .picture {
+        width: 60px;
+    }
+}
