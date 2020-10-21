@@ -4,7 +4,6 @@
     overflow-x: hidden;
     overflow-y: auto;
     background-image: url("../img/circuitry-25opacity.png");
-    background-position-y: 200px;
 }
 .parallax-bg {
     position: absolute;
