@@ -12,7 +12,7 @@ function clearMenu() {
         if (item.nodeName.includes("LI")) {
             if (item.className.includes(" active")) {
                 item.className = item.className.replace(" active", "");
-            }    
+            }
         }
     });
 }
