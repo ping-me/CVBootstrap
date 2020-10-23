@@ -27,6 +27,9 @@ h3>.badge-primary {
 h3>.badge-secondary {
     font-size: 16px;
 }
+nav {
+    box-shadow: inset 0px 0px 5px #000;
+}
 a.nav-link {
     transition: text-shadow 0.2s ease-out;
 }
