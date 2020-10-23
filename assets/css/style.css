@@ -92,7 +92,7 @@ div.card {
         text-shadow: 0px 0px 3px var(--primary);
     }
 }
-.menu_anchors {
+.menu-anchors {
     visibility: hidden;
     position: relative;
     top: -300px;
@@ -111,33 +111,97 @@ div.card {
     width: 20px;
     margin-right: 10px;
 }
-.skill_dot_on, .skill_dot_off {
+.skill-dot-on, .skill-dot-off {
     height: 10px;
     width: 10px;
     border-radius: 50%;
     display: inline-block;
     margin-left: 5px;
 }
-.skill_dot_on {
+.skill-dot-on {
     transition: transform 0.2s ease-out;
 }
-.skill_dot_on:hover {
+.skill-dot-on:hover {
     transform: scale(1.25);
 }
-.skill_dot_on {
+.skill-dot-on {
     background-color: var(--primary);
 }
-.skill_dot_off {
+.skill-dot-off {
     background-color: lightgray;
 }
 .badge.block-badge {
     display: block;
 }
+.project-list {
+    cursor: pointer;
+}
+#project-diap {
+    width: 300px;
+    height: 300px;
+    perspective: 900px;
+    margin: 50px auto;
+}
+#cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+div[class^=cube-face-] {
+    display: flex;
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    font-size: 36px;
+    border: solid 1px black;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    background: radial-gradient(#3e78b2,#004ba8);
+}
+.cube-face-front {
+    transform: rotateY(0deg) translateZ(150px);
+}
+.cube-face-back {
+    transform: rotateY(180deg) translateZ(150px);
+}
+.cube-face-right {
+    transform: rotateY(90deg) translateZ(150px);
+}
+.cube-face-left {
+    transform: rotateY(-90deg) translateZ(150px);
+}
+.cube-face-top {
+    transform: rotateX(90deg) translateZ(150px);
+}
+.cube-face-bottom {
+    transform: rotateX(-90deg) translateZ(150px);
+}
+#cube.show-front {
+    transform: translateZ(-150px) rotateY(0deg);
+}
+#cube.show-back {
+    transform: translateZ(-150px) rotateY(-180deg);
+}
+#cube.show-right {
+    transform: translateZ(-150px) rotateY(-90deg);
+}
+#cube.show-left {
+    transform: translateZ(-150px) rotateY(90deg);
+}
+#cube.show-top {
+    transform: translateZ(-150px) rotateX(-90deg);
+}
+#cube.show-bottom {
+    transform: translateZ(-150px) rotateX(90deg);
+}
 @media (min-width: 768px) {
     .parallax-bg {
         top: -50px;
     }
-    .menu_anchors {
+    .menu-anchors {
         top: -50px;
     }
     .banner-title {
