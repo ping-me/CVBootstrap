@@ -157,12 +157,9 @@ div[class^=cube-face-] {
     position: absolute;
     width: 300px;
     height: 300px;
-    font-size: 36px;
-    border: solid 1px black;
     align-items: center;
     justify-content: center;
     backface-visibility: hidden;
-    background: radial-gradient(#3e78b2,#004ba8);
 }
 .cube-face-front {
     transform: rotateY(0deg) translateZ(150px);
