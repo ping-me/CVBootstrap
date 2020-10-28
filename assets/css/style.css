@@ -41,7 +41,7 @@ div.card {
     box-shadow: 0px 0px 1.5px #000;
 }
 .badge:hover {
-    animation: badge-pop 200ms;
+    animation: badge-pop 200ms ease-out;
 }
 @keyframes badge-pop {
     75% {
