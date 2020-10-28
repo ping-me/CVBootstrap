@@ -9,6 +9,15 @@ projectTitle.innerHTML = projectList['show-front']['title'];
 projectDescription.innerHTML = projectList['show-front']['description'];
 
 //Initialisation Hammer pour le cube drag
+var deltaX = 0;
+var deltaY = 0;
+var lastX = 0;
+var lastY = 0;
+const hammer = new Hammer(document.getElementById('project-diap'));
+hammer.get('pan').set({direction: Hammer.DIRECTION_ALL});
+hammer.on('pan', ev => dragCube(getOffset(ev.deltaX, deltaX), getOffset(-ev.deltaY, deltaY)));
+hammer.on('panend', ev => { deltaX = lastY; deltaY = lastX; });
+
 function dragCube(distY, distX) {
     cube.style.transition = '';
     cube.style.transform = `translateZ(-150px) rotateY(${distY}deg) rotateX(${distX}deg)`;
@@ -19,16 +28,6 @@ function dragCube(distY, distX) {
 function getOffset(dist, delta) {
     return dist / 2 + delta;
 }
-
-var deltaX = 0;
-var deltaY = 0;
-var lastX = 0;
-var lastY = 0;
-const hammer = new Hammer(document.getElementById('project-diap'));
-hammer.get('pan').set({direction: Hammer.DIRECTION_ALL});
-hammer.on('pan', ev => dragCube(getOffset(ev.deltaX, deltaX), getOffset(-ev.deltaY, deltaY)));
-hammer.on('panend', ev => { deltaX = lastY; deltaY = lastX; });
-
 
 function rotCube(face, obj)
 {

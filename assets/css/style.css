@@ -40,6 +40,17 @@ ul.list-group {
 div.card {
     box-shadow: 0px 0px 1.5px #000;
 }
+.badge:hover {
+    animation: badge-pop 200ms;
+}
+@keyframes badge-pop {
+    75% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
 .parallax-container {
     perspective: 1px;
     height: 100vh;
@@ -126,9 +137,6 @@ div.card {
 }
 .skill-dot-off {
     background-color: lightgray;
-}
-.badge.block-badge {
-    display: block;
 }
 .project-list {
     cursor: pointer;
