@@ -153,7 +153,29 @@ div.card {
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 1s;
+}
+div[class^=cube-image-] {
+    width: 280px;
+    height: 150px;
+    background-size: cover;
+}
+.cube-image-1 {
+    background-image: url('../img/project-1-screencap.png');
+}
+.cube-image-2 {
+    background-image: url('../img/project-placeholder.png');
+}
+.cube-image-3 {
+    background-image: url('../img/project-placeholder.png');
+}
+.cube-image-4 {
+    background-image: url('../img/project-placeholder.png');
+}
+.cube-image-5 {
+    background-image: url('../img/project-placeholder.png');
+}
+.cube-image-6 {
+    background-image: url('../img/project-6-screencap.png');
 }
 div[class^=cube-face-] {
     display: flex;
