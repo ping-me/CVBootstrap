@@ -14,7 +14,7 @@ let lastY = 0;
 const hammer = new Hammer(document.getElementById('project-diap'));
 hammer.get('pan').set({direction: Hammer.DIRECTION_ALL});
 hammer.on('pan', ev => dragCube(getOffset(ev.deltaX, deltaX), getOffset(-ev.deltaY, deltaY)));
-hammer.on('panend', ev => { deltaX = lastY; deltaY = lastX; });
+hammer.on('panend', () => { deltaX = lastY; deltaY = lastX; });
 
 // Calcul et affichage de l'age
 document.getElementById('dynamic-age').textContent = getAge();
@@ -50,7 +50,7 @@ function rotCube(face, obj) {
 }
 
 function clearMenu() {
-    menu.childNodes.forEach((item, index) => {
+    menu.childNodes.forEach((item) => {
         if (item.nodeName.includes("LI")) {
             if (item.className.includes("active")) {
                 item.classList.remove("active");
@@ -65,8 +65,7 @@ function projectDescFill(face) {
 }
 
 function projectDescShow(showStatus) {
-    let toRemove = '';
-    let toAdd = '';
+    let toRemove, toAdd;
     if (showStatus) {
         toRemove = 'out';
         toAdd = 'in';
