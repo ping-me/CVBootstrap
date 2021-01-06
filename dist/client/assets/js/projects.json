@@ -1,0 +1,44 @@
+{
+    "show-front": [
+        {
+            "cube-index": 1,
+            "title": "Refonte du site du bar Le Loot",
+            "descripton": "Le site web du bar Le Loot a été entièrement refait en utilisant le framework Bootstrap"
+        }
+    ],
+    "show-right": [
+        {
+            "cube-index": 2,
+            "title": "Projet à venir",
+            "descripton": "Description à venir..."
+        }
+    ],
+    "show-back": [
+        {
+            "cube-index": 3,
+            "title": "Projet à venir",
+            "descripton": "Description à venir..."
+        }
+    ],
+    "show-left": [
+        {
+            "cube-index": 4,
+            "title": "Projet à venir",
+            "descripton": "Description à venir..."
+        }
+    ],
+    "show-bottom": [
+        {
+            "cube-index": 5,
+            "title": "Projet à venir",
+            "descripton": "Description à venir..."
+        }
+    ],
+    "show-top": [
+        {
+            "cube-index": 6,
+            "title": "Mon CV Numérique",
+            "descripton": "Mon CV en ligne, réalisé avec le framework Bootstrap."
+        }
+    ]
+}
