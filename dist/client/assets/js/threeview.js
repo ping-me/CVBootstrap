@@ -6,21 +6,30 @@ const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 100);
 // Création du renderer
 const renderer = new THREE.WebGLRenderer();
 // Et ajout au div wrapper prévu
-// @ts-ignore
 document.getElementById('banner-three-wrapper').appendChild(renderer.domElement);
 // Création de la géometrie
+/*
 const lathe = [];
 for (let x = 0; x < 50; x++) {
     lathe.push(new THREE.Vector2(Math.cos(x * 0.64) * 1.5 + 2, (x - 25) * 0.04 + 0.25));
 }
-const geometry = new THREE.LatheBufferGeometry(lathe, 50, 0, Math.PI * 2);
+const geometry: THREE.LatheBufferGeometry = new THREE.LatheBufferGeometry(lathe, 50, 0, Math.PI * 2);
+*/
+const particles = [];
+for (let p = 0; p < 2500; p++) {
+    let px = Math.random() * 5 - 2.5;
+    let py = Math.random() * 5 - 2.5;
+    let pz = Math.random() * 5 - 2.5;
+    particles.push(px, py, pz);
+}
+const geometry = new THREE.BufferGeometry();
+geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(particles), 3));
 const material = new THREE.PointsMaterial({
-    color: 0xffffff,
     size: 0.05,
     transparent: true,
     blending: THREE.AdditiveBlending,
-    depthTest: true,
-    alphaTest: 0.1,
+    alphaTest: 0.5,
+    opacity: 0.75,
     map: createPointMaterial()
 });
 function createPointMaterial() {
@@ -29,23 +38,18 @@ function createPointMaterial() {
     texCanvas.width = 16;
     texCanvas.height = 16;
     let context = texCanvas.getContext('2d');
-    // @ts-ignore
     let gradient = context.createRadialGradient(8, 8, 0, 8, 8, 8);
     gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-    gradient.addColorStop(0.2, 'rgba(255, 255, 255, 0)');
-    gradient.addColorStop(0.2, 'rgba(192, 192, 0, 0.8)');
-    gradient.addColorStop(0.8, 'rgba(192, 192, 0, 0.2)');
-    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-    // @ts-ignore
+    gradient.addColorStop(0.3, 'rgba(192, 192, 0, 1)');
+    gradient.addColorStop(0.6, 'rgba(0, 0, 0, 0)');
     context.fillStyle = gradient;
-    // @ts-ignore
     context.fillRect(0, 0, 16, 16);
     let texture = new THREE.Texture(texCanvas);
     texture.needsUpdate = true;
     return texture;
 }
-const latheMesh = new THREE.Points(geometry, material);
-scene.add(latheMesh);
+const mesh = new THREE.Points(geometry, material);
+scene.add(mesh);
 camera.position.z = 2;
 let resize = function () {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -54,10 +58,11 @@ let resize = function () {
 };
 let animate = function () {
     requestAnimationFrame(animate);
-    latheMesh.rotation.y += 0.0001 % Math.PI;
+    mesh.rotation.y += 0.001 % Math.PI;
     renderer.render(scene, camera);
 };
 // On mets en place un redimensionnement si la fenêtre est redimensionnée
 window.onresize = resize;
 resize();
 animate();
+//# sourceMappingURL=threeview.js.map

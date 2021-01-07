@@ -154,25 +154,33 @@ div.card {
     position: relative;
     transform-style: preserve-3d;
 }
+#cube:hover {
+    cursor: grab;
+}
 div[class^=cube-image-] {
     width: 280px;
     height: 160px;
     background-size: cover;
 }
+div[class^=cube-image] {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 .cube-image-1 {
     background-image: url('../img/project-1-screencap.png');
 }
 .cube-image-2 {
-    background-image: url('../img/project-placeholder.png');
+    background-image: url('../img/project-2-screencap.png');
 }
 .cube-image-3 {
-    background-image: url('../img/project-placeholder.png');
+    background-image: url('../img/project-3-screencap.png');
 }
 .cube-image-4 {
-    background-image: url('../img/project-placeholder.png');
+    background-image: url('../img/project-4-screencap.png');
 }
 .cube-image-5 {
-    background-image: url('../img/project-placeholder.png');
+    background-image: url('../img/project-5-screencap.png');
 }
 .cube-image-6 {
     background-image: url('../img/project-6-screencap.png');
