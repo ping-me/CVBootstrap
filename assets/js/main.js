@@ -2,11 +2,14 @@
 let menu = document.getElementById('project-menu');
 let projectTitle = document.getElementById('project-title');
 let projectDescription = document.getElementById('project-description');
-let projectList = JSON.parse('{ "show-front": { "cube-index": 1, "title": "Refonte du site du bar Le Loot", "description": "Le site web du bar Le Loot a été entièrement refait en utilisant le framework Bootstrap" } , "show-right": { "cube-index": 2, "title": "Projet 2 à venir", "description": "Description à venir..." } , "show-back": { "cube-index": 3, "title": "Projet 3 à venir", "description": "Description à venir..." } , "show-left": { "cube-index": 4, "title": "Projet 4 à venir", "description": "Description à venir..." } , "show-bottom": { "cube-index": 5, "title": "Projet 5 à venir", "description": "Description à venir..." } , "show-top": { "cube-index": 6, "title": "CV Numérique", "description": "Mon CV en ligne, réalisé avec le framework Bootstrap." } }');
+let projectList = JSON.parse('{ "show-front": { "cube-index": 1, "title": "Calendrier", "description": "Développé lors d\'un TP sur PHP.  Mise en oeuvre du pattern MVC." } , "show-right": { "cube-index": 2, "title": "Calculatrice", "description": "Développé à titre personnel pour l\'apprentissage du C#, du pattern MVVM, et de la programmation Windows avec le framework WPF." } , "show-back": { "cube-index": 3, "title": "Labyrinthe", "description": "Développé pour expérimenter la manipulation du DOM en Javascript et la création d\'éléments HTML personnalisés." } , "show-left": { "cube-index": 4, "title": "Solitaire", "description": "Développé pour pousser un peu plus mon étude du DOM en Javascript." } , "show-bottom": { "cube-index": 5, "title": "Tetris", "description": "Adaptation en Javascript d\'un projet originalement écrit en C++." } , "show-top": { "cube-index": 6, "title": "TSIRC", "description": "Un client IRC, pour apprendre Typescript et Node.js." } }');
 projectDescFill('show-front');
 
 // Initialisation cube
 let cube = document.getElementById('cube');
+cube.addEventListener('mousedown', () => cube.style.cursor = 'grabbing');
+cube.addEventListener('mouseup', () => cube.style.cursor = 'grab');
+
 let deltaX = null;
 let deltaY = null;
 let lastX = 0;
@@ -17,7 +20,7 @@ hammer.on('pan', ev => dragCube(getOffset(ev.deltaX, deltaX), getOffset(-ev.delt
 hammer.on('panend', () => { deltaX = lastY; deltaY = lastX; });
 
 // Calcul et affichage de l'age
-document.getElementById('dynamic-age').textContent = getAge();
+document.getElementById('dynamic-age').textContent = getAge().toString();
 
 /**
  * Permet d'obtenir l'âge courant
