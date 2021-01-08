@@ -1,4 +1,5 @@
 import * as THREE from "/assets/js/three.module.js";
+
 // Création de la scène
 const scene = new THREE.Scene();
 // Création de la caméra
@@ -58,7 +59,7 @@ let resize = function () {
 };
 let animate = function () {
     requestAnimationFrame(animate);
-    mesh.rotation.y += 0.001 % Math.PI;
+    mesh.rotation.y += 0.0001 % Math.PI;
     renderer.render(scene, camera);
 };
 // On mets en place un redimensionnement si la fenêtre est redimensionnée
