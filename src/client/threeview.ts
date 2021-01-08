@@ -1,6 +1,4 @@
 import * as THREE from "/assets/js/three.module.js";
-import {Color, Object3D} from "/assets/js/three.module.js";
-import { OrbitControls } from "/jsm/controls/OrbitControls";
 
 // Création de la scène
 const scene: THREE.Scene = new THREE.Scene();
@@ -18,18 +16,19 @@ let pageRatio = new THREE.Vector2(1, 0);
 // Et ajout au div wrapper prévu
 document.getElementById('banner-three-wrapper')!.appendChild(renderer.domElement);
 
-// Création de la géometrie
+// Création de la géometrie pour les particules
 const particles = [];
-for (let p = 0; p < 2500; p++) {
+for (let p = 0; p < 1000; p++) {
     let px = Math.random() * 5 - 2.5;
     let py = Math.random() * 5 - 2.5;
     let pz = Math.random() * 5 - 2.5;
     particles.push(px, py, pz);
 }
-const geometry: THREE.BufferGeometry = new THREE.BufferGeometry();
-geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(particles), 3))
+const particlesGeometry: THREE.BufferGeometry = new THREE.BufferGeometry();
+particlesGeometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(particles), 3))
 
-const material: THREE.PointsMaterial = new THREE.PointsMaterial({
+// Création du materiau pour les particules
+const particlesMaterial: THREE.PointsMaterial = new THREE.PointsMaterial({
     size: 0.05,
     transparent: true,
     blending: THREE.AdditiveBlending,
@@ -38,11 +37,12 @@ const material: THREE.PointsMaterial = new THREE.PointsMaterial({
     map: createPointMaterial()
 });
 
-const mesh: THREE.Points = new THREE.Points(geometry, material);
-scene.add(mesh);
+// Création des meshes et ajout à la scene
+const particlesMesh: THREE.Points = new THREE.Points(particlesGeometry, particlesMaterial);
+scene.add(particlesMesh);
 
 camera.position.z = 2
-
+particlesMesh.position.y = -0.5;
 
 // On mets en place un redimensionnement si la fenêtre est redimensionnée
 window.addEventListener('resize', resize);
@@ -51,11 +51,18 @@ resize();
 // Met en place le listener pour le mouvement du background
 window.addEventListener('mousemove', tiltBackground);
 
+// Met en place le listener pour le défilement du background
+window.addEventListener('scroll', scrollPage);
+
+// Lancement de la boucle d'animation principale
 animate();
 
+/**
+ * Boucle d'animation principale
+ */
 function animate() {
     requestAnimationFrame(animate)
-    mesh.rotation.y += (0.001 * pageRatio.x) % Math.PI;
+    particlesMesh.rotation.y += (0.001 * pageRatio.x) % Math.PI;
     renderer.render(scene, camera)
 }
 
@@ -80,7 +87,12 @@ function resize() {
 function tiltBackground(event: MouseEvent) {
     pageRatio.x = (event.clientX - pageCoord.x) / pageCoord.x;
     pageRatio.y = (event.clientY - pageCoord.x) / pageCoord.y;
-    mesh.rotation.x = (0.05 * pageRatio.y) % Math.PI;
+    particlesMesh.rotation.x = (0.05 * pageRatio.y) % Math.PI;
+}
+
+function scrollPage() {
+    let backgroundY = document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight) - 0.5;
+    particlesMesh.position.y = backgroundY;
 }
 
 /**
