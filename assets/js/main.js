@@ -33,6 +33,11 @@ function getAge() {
     return age.getFullYear() - 1970;
 }
 
+/**
+ * Callback de l'évènement Hammer pan
+ * @param distY Distance parcourue par la souris sur l'axe y
+ * @param distX Distance parcourue par la souris sur l'axe x
+ */
 function dragCube(distY, distX) {
     cube.style.transition = '';
     cube.style.transform = `translateZ(-150px) rotateY(${distY}deg) rotateX(${distX}deg)`;
@@ -40,21 +45,35 @@ function dragCube(distY, distX) {
     lastY = distY % 360;
 }
 
+/**
+ * Retourne la distance entre la position actuelle et la nouvelle position de la souris
+ * @param dist Distance actuelle de la souris
+ * @param delta Ancienne distance
+ * @returns {number} La distance entre les deux points
+ */
 function getOffset(dist, delta) {
     return dist / 2 + delta;
 }
 
-function rotCube(face, obj) {
+/**
+ * Tourne le cube pour faire apparaitre la face désirée.
+ * @param string face Le nom de la face à afficher
+ * @param HTMLElement listItem L'élément à activer dans la liste des projets
+ */
+function rotCube(face, listItem) {
     cube.style.transition = 'transform 1s';
     cube.style.transform = '';
     clearMenu();
-    obj.classList.add("active");
+    listItem.classList.add("active");
     cube.className = face;
     projectDescShow(false);
-    setTimeout(function() {projectDescFill(face);}, 250);
-    setTimeout(function() {projectDescShow(true);}, 500);
+    setTimeout(() => projectDescFill(face), 250);
+    setTimeout(() => projectDescShow(true), 500);
 }
 
+/**
+ * Remet à jour les éléments de la liste des projets
+ */
 function clearMenu() {
     menu.childNodes.forEach((item) => {
         if (item.nodeName.includes("LI")) {
@@ -65,11 +84,19 @@ function clearMenu() {
     });
 }
 
+/**
+ * Met à jour la description du projet actuellement sélectionné
+ * @param string face Le div contenant la description
+ */
 function projectDescFill(face) {
     projectTitle.innerHTML = projectList[face]['title'];
     projectDescription.innerHTML = projectList[face]['description'];
 }
 
+/**
+ * Gére les classes pour l'effet sur le sélecteur de projet
+ * @param boolean showStatus Si on doit afficher ou non la description
+ */
 function projectDescShow(showStatus) {
     let toRemove, toAdd;
     if (showStatus) {
