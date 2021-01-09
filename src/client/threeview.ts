@@ -10,18 +10,18 @@ const camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera(75, 1, 0.1, 
 const renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer();
 
 // Détermination du centre de la page
-let pageCoord = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
-let pageRatio = new THREE.Vector2(1, 0);
+let pageCoord: THREE.Vector2 = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
+let pageRatio: THREE.Vector2 = new THREE.Vector2(1, 0);
 
 // Et ajout au div wrapper prévu
 document.getElementById('banner-three-wrapper')!.appendChild(renderer.domElement);
 
 // Création de la géometrie pour les particules
 const particles = [];
-for (let p = 0; p < 1000; p++) {
-    let px = Math.random() * 5 - 2.5;
-    let py = Math.random() * 5 - 2.5;
-    let pz = Math.random() * 5 - 2.5;
+for (let p: number = 0; p < 1000; p++) {
+    let px: number = Math.random() * 5 - 2.5;
+    let py: number = Math.random() * 5 - 2.5;
+    let pz: number = Math.random() * 5 - 2.5;
     particles.push(px, py, pz);
 }
 const particlesGeometry: THREE.BufferGeometry = new THREE.BufferGeometry();
